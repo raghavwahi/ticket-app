@@ -28,7 +28,7 @@ const TicketForm = () => {
     e.preventDefault();
     const res = await fetch("/api/Tickets", {
       method: "post",
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ formData }),
       "content-type": "application/json",
     });
 
