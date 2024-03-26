@@ -36,8 +36,8 @@ const TicketForm = () => {
       throw new Error("Failed to create Ticket.");
     }
 
-    router.refresh();
     router.push("/");
+    router.refresh();
   };
 
   return (
