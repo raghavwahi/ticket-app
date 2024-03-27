@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { BASE_API_URL } from "../constants";
 
 const TicketForm = ({ ticket }) => {
   const EDITMODE = ticket._id === "new" ? false : true;
@@ -40,7 +41,8 @@ const TicketForm = ({ ticket }) => {
     e.preventDefault();
 
     if (EDITMODE) {
-      const res = await fetch(`/api/Tickets/${ticket._id}`, {
+      console.log(`${BASE_API_URL}/api/Tickets/${ticket._id}`);
+      const res = await fetch(`${BASE_API_URL}/api/Tickets/${ticket._id}`, {
         method: "PUT",
         body: JSON.stringify({ formData }),
         "content-type": "application/json",
@@ -50,7 +52,7 @@ const TicketForm = ({ ticket }) => {
         throw new Error("Failed to update Ticket.");
       }
     } else {
-      const res = await fetch("/api/Tickets", {
+      const res = await fetch(`${BASE_API_URL}/api/Tickets`, {
         method: "post",
         body: JSON.stringify({ formData }),
         "content-type": "application/json",
