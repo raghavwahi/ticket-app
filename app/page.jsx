@@ -2,6 +2,10 @@ import { BASE_API_URL } from "./constants";
 import TicketCard from "./{components}/TicketCard";
 
 const getTickets = async () => {
+  if (!BASE_API_URL) {
+    return null;
+  }
+
   try {
     const res = await fetch(`${BASE_API_URL}/api/Tickets`, {
       cache: "no-store",
