@@ -2,10 +2,6 @@ import { BASE_API_URL } from "./constants";
 import TicketCard from "./{components}/TicketCard";
 
 const getTickets = async () => {
-  if (!BASE_API_URL) {
-    return null;
-  }
-
   try {
     const res = await fetch(`${BASE_API_URL}/api/Tickets`, {
       cache: "no-store",
@@ -17,6 +13,9 @@ const getTickets = async () => {
 };
 
 const Dashboard = async () => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const { tickets } = await getTickets();
   const uniqueCategories = [
     ...new Set(tickets?.map(({ category }) => category)),
